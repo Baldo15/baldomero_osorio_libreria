@@ -1,3 +1,4 @@
+@Library('threepoints-sharedlib@1.0') _
 def call(boolean abortPipeline = false, boolean qualityGateAbort = false) {
     echo "Ejecución de las pruebas de calidad de código"
 
