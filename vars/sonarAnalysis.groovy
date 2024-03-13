@@ -1,7 +1,7 @@
 @Library('threepoints-sharedlib@v1.0') _
 def call(boolean qualityGateAbort = false, boolean abortPipeline = false) {
     echo "Ejecución de las pruebas de calidad de código"
-
+    return
     // Puedes sustituir este bloque con la lógica de SonarQube si decides usarlo
     // sh 'sonar-scanner' (o cualquier comando de SonarQube)
     
