@@ -1,4 +1,4 @@
-def call(boolean qualityGateAbort = false, boolean abortPipeline = false) {
+def call(boolean qualityGateAbort = true, boolean abortPipeline = true) {
     echo "Ejecución de las pruebas de calidad de código"
     echo "qualityGateAbort: ${qualityGateAbort}"
     echo "abortPipeline: ${abortPipeline}"
