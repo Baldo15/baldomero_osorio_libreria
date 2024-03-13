@@ -21,10 +21,12 @@ def call(boolean qualityGateAbort = false, boolean abortPipeline = false) {
         echo "Evaluando QualityGate..."
         // Si el QualityGate no pasa, abortar el pipeline
         error "QualityGate no aprobado. Abortando el pipeline."
+        return
     }
 
     // Abortar el pipeline según el parámetro recibido
     if (abortPipeline) {
         error "Abortando el pipeline según el parámetro proporcionado."
+        return
     }
 }
