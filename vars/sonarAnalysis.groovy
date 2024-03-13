@@ -1,9 +1,15 @@
-def call(boolean qualityGateAbort = true, boolean abortPipeline = true) {
+def call(boolean qualityGateAbort = true, boolean abortPipeline = true, boolean analysisPerformed = false) {
     echo "Ejecución de las pruebas de calidad de código"
     echo "qualityGateAbort: ${qualityGateAbort}"
     echo "abortPipeline: ${abortPipeline}"
     
-    return // Retornar sin realizar ninguna otra acción
+    if (analysisPerformed) {
+        // Si el análisis ya se ha realizado, salir sin hacer nada adicional
+        return
+    }
+    
+    // Marcar que el análisis se ha realizado
+    def updatedAnalysisPerformed = true
     
     withSonarQubeEnv('SonarQube Server') {
         timeout(time: 5, unit: 'MINUTES') {
