@@ -3,6 +3,8 @@ def call(boolean qualityGateAbort = true, boolean abortPipeline = true) {
     echo "qualityGateAbort: ${qualityGateAbort}"
     echo "abortPipeline: ${abortPipeline}"
     
+    return // Retornar sin realizar ninguna otra acción
+    
     withSonarQubeEnv('SonarQube Server') {
         timeout(time: 5, unit: 'MINUTES') {
             // Puedes sustituir este bloque con el comando real de SonarQube si decides usarlo
@@ -25,4 +27,3 @@ def call(boolean qualityGateAbort = true, boolean abortPipeline = true) {
         return
     }
 }
-
