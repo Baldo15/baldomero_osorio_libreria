@@ -1,20 +1,17 @@
-def call(boolean qualityGateAbort = false, boolean abortPipeline = false) {
+def call(boolean qualityGateAbort = true) {
     echo "Ejecución de las pruebas de calidad de código"
-           
-    withSonarQubeEnv('SonarQube Server') {
-        timeout(time: 5, unit: 'MINUTES') {
-            echo "Simulación de escaneo de SonarQube"
-        }
-    }
+    echo "qualityGateAbort: ${qualityGateAbort}"
+    
+    def branchName = env.BRANCH_NAME 
     
     if (qualityGateAbort) {
-        echo "Evaluando QualityGate..."
-        error "QualityGate no aprobado. Abortando el pipeline."
+        error "Abortando el pipeline debido a la configuración."
         return
     }
-    
-    if (abortPipeline) {
-        error "Abortando el pipeline según el parámetro proporcionado."
+
+    if (branchName == 'master' || branchName.startsWith('hotfix')) {
+        error "Abortando el pipeline debido al nombre de la rama: $branchName"
         return
     }
+    echo "Continuando la ejecución del pipeline para la rama: $branchName"
 }
